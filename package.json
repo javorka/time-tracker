@@ -2,7 +2,15 @@
   "name": "time-tracker",
   "version": "0.0.0",
   "description": "Time tracking native app",
-  "keywords": ["time", "time-tracking", "electron", "pomodoro", "tomato-timer", "timer", "time-management"],
+  "keywords": [
+    "time",
+    "time-tracking",
+    "electron",
+    "pomodoro",
+    "tomato-timer",
+    "timer",
+    "time-management"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch src --ext js,jsx --exec npm start",
@@ -29,7 +37,8 @@
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-redux": "^4.0.8",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

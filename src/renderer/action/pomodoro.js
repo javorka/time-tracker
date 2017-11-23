@@ -1,7 +1,14 @@
 import ACTIONS from './actions';
 
+function timeoutEnd() {
+  return { type: ACTIONS.POMODORO_TIMEOUT_END };
+}
+
 export function startPomodoro() {
-  return { type: ACTIONS.POMODORO_START };
+  return (dispatch) => {
+    const timeoutId = setTimeout(() => dispatch(timeoutEnd()), 1000);
+    dispatch({ type: ACTIONS.POMODORO_START, timeoutId });
+  };
 }
 
 export function stopPomodoro() {
@@ -9,9 +16,15 @@ export function stopPomodoro() {
 }
 
 export function startWork() {
-  return { type: ACTIONS.POMODORO_START_WORK };
+  return (dispatch) => {
+    const timeoutId = setTimeout(() => dispatch(timeoutEnd()), 1000);
+    dispatch({ type: ACTIONS.POMODORO_START_WORK, timeoutId });
+  };
 }
 
 export function startBreak() {
-  return { type: ACTIONS.POMODORO_START_BREAK };
+  return (dispatch) => {
+    const timeoutId = setTimeout(() => dispatch(timeoutEnd()), 1000);
+    dispatch({ type: ACTIONS.POMODORO_START_BREAK, timeoutId });
+  };
 }
