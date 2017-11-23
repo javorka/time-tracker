@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { join } from 'path';
 import { format } from 'url';
+import ipcHandler from './main/ipc/mainIpcHandler';
 
 let mainWindow; // keep reference, or garbage collector closes it
 
@@ -17,7 +18,12 @@ function createWindow() {
     mainWindow = null;
   });
 }
-app.on('ready', createWindow);
+
+ipcHandler();
+
+app.on('ready', () => {
+  createWindow();
+});
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -30,3 +36,4 @@ app.on('activate', () => {
     createWindow();
   }
 });
+

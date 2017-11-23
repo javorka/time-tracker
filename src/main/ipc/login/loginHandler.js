@@ -1,3 +1,9 @@
-export default function (event, args) {
-  event.sender.send()
+import { rendererChannels } from '../channels';
+
+export default function (event) {
+  const user = {
+    name: 'Peter',
+    id: 1,
+  };
+  event.sender.send(rendererChannels.loginSuccess, user);
 }

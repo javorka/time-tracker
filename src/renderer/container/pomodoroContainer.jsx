@@ -10,6 +10,7 @@ class PomodoroContainer extends Component {
     this.startWork = this.startWork.bind(this);
     this.startBreak = this.startBreak.bind(this);
     this.stopPomodoro = this.stopPomodoro.bind(this);
+    // this.showNotification = this.showNotification.bind(this);
   }
 
   startPomodoro() {
@@ -28,6 +29,13 @@ class PomodoroContainer extends Component {
     this.props.stopPomodoro();
   }
 
+  // showNotification() {
+  //   const myNotification = new Notification('Title', {
+  //     body: 'Lorem Ipsum Dolor Sit Amet',
+  //   });
+  //   myNotification.show();
+  // }
+
   render() {
     const { isActive, worklog, breaks } = this.props;
     return (
@@ -37,6 +45,7 @@ class PomodoroContainer extends Component {
         <button type="button" onClick={this.stopPomodoro}>Stop pomodoro</button>
         <button type="button" onClick={this.startWork}>Start work</button>
         <button type="button" onClick={this.startBreak}>Start break</button>
+        {/* <button type="button" onClick={this.showNotification}>Notification</button> */}
         <h3>Worklog</h3>
         {worklog.map(e => <div key={e.start.toString()}>Start: {e.start.toString()} | End: {e.end ? e.end.toString() : '---'}</div>)}
         <h3>Breaks</h3>
@@ -48,8 +57,14 @@ class PomodoroContainer extends Component {
 
 PomodoroContainer.propTypes = {
   isActive: PropTypes.bool.isRequired,
-  worklog: PropTypes.array.isRequired,
-  breaks: PropTypes.array.isRequired,
+  worklog: PropTypes.arrayOf(PropTypes.shape({
+    start: PropTypes.instanceOf(Date),
+    end: PropTypes.instanceOf(Date),
+  })).isRequired,
+  breaks: PropTypes.arrayOf(PropTypes.shape({
+    start: PropTypes.instanceOf(Date),
+    end: PropTypes.instanceOf(Date),
+  })).isRequired,
   startPomodoro: PropTypes.func.isRequired,
   stopPomodoro: PropTypes.func.isRequired,
   startWork: PropTypes.func.isRequired,

@@ -1,0 +1,8 @@
+{
+  "extends": ["airbnb"],
+  "globals": {
+    "Notification": true,
+    "window": true,
+    "document": true
+  }
+}
